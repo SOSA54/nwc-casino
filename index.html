@@ -5,37 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NWC Arcade Casino</title>
     <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="jstetris-master/src/tetris.css">
+    <!-- Ensure the path to tetris.css is relative to the location of this index.html file -->
+    <link rel="stylesheet" href="jstetris-master/src/tetris.css">
+    <style>
+        /* Additional styles to ensure Tetris fits well into the layout */
+        #tetris {
+            height: 640px; /* Adjust the height as needed */
+            width: 320px; /* Adjust the width as needed */
+            margin: auto; /* Center the game */
+        }
+        .game-window {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="logo">NWC Casino</div>
-        <div class="user-controls">
-            <input type="search" placeholder="Search...">
-            <button type="button" id="signIn">Sign In</button>
-            <button type="button" id="signUp" class="sign-up">Sign Up</button>
-        </div>
+        <!-- Header content -->
     </header>
     <aside class="navigation">
-        <!-- Navigation links will go here -->
-        <a href="#" class="nav-link active">Casino</a>
-        <a href="#" class="nav-link">Sports</a>
-        <a href="#" class="nav-link">Racing</a>
-        <!-- More links as needed -->
+        <!-- Navigation links -->
     </aside>
     <main>
         <section class="game-window">
-            <!-- Game integration will go here -->
-            <div class="game-placeholder">Game Window</div>
+            <!-- Tetris game will be initialized in this container -->
+            <div id="tetris-game-container">
+                <!-- Extracted HTML from jstetris's index.html -->
+                <!-- Simplified and adapted for this integration -->
+                <div id="tetris">
+                    <!-- Game area where Tetris will be rendered -->
+                    <div id="tetris-area"></div>
+                </div>
+            </div>
         </section>
         <section class="bet-info">
-            <!-- Bet information will go here -->
-            <div class="bet-placeholder">Latest bet & Race Information</div>
+            <!-- Betting information -->
         </section>
     </main>
-    <!-- Footer can be added here if needed -->
-    <script src="script.js"></script>
-<script src="jstetris-master/src/tetris.js"></script>
-
+    <footer>
+        <!-- Footer content -->
+    </footer>
+    <!-- Ensure the path to tetris.js is relative to the location of this index.html file -->
+    <script src="jstetris-master/src/tetris.js"></script>
+    <script>
+        // Initialize the Tetris game
+        var tetris = new Tetris();
+        tetris.unit = 14; // The size of a single block
+        tetris.areaX = 12; // Width of the game area
+        tetris.areaY = 22; // Height of the game area
+    </script>
 </body>
 </html>
