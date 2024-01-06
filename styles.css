@@ -1,7 +1,8 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background for the body */
 }
 
 header {
@@ -11,28 +12,43 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .logo {
     font-size: 1.5em;
     font-weight: bold;
+    color: #4CAF50; /* Logo color */
 }
 
 .user-controls input[type="search"] {
+    border: none;
+    border-radius: 20px;
+    padding: 5px 10px;
     margin-right: 10px;
 }
 
 .user-controls button {
-    background-color: #4CAF50; /* Green */
     border: none;
-    color: white;
+    border-radius: 20px;
     padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    margin: 0 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#signIn {
+    background-color: #555; /* Gray */
+    color: white;
+}
+
+.sign-up {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.user-controls button:hover {
+    opacity: 0.9;
 }
 
 .navigation {
@@ -42,6 +58,7 @@ header {
     width: 200px;
     height: 100vh; /* Full-height */
     position: fixed;
+    overflow-y: auto; /* Enable scrolling if content is too long */
 }
 
 .nav-link {
@@ -49,22 +66,31 @@ header {
     padding: 10px;
     text-decoration: none;
     display: block;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.nav-link.active {
-    background-color: #4CAF50;
+.nav-link:hover, .nav-link.active {
+    background-color: #4CAF50; /* Green */
 }
 
 main {
     margin-left: 200px; /* Same as the width of the sidebar */
-    padding: 1px 16px;
-    height: 1000px; /* Used for demonstration */
+    padding: 20px;
 }
 
-.game-window, .bet-info {
+.game-window {
     background-color: #f1f1f1;
     margin: 20px 0;
     padding: 20px;
+    border-radius: 10px;
+}
+
+.bet-info {
+    background-color: #f1f1f1;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .game-placeholder, .bet-placeholder {
@@ -72,4 +98,5 @@ main {
     padding: 50px;
     background-color: #ddd;
     margin-bottom: 20px;
+    border-radius: 10px;
 }
