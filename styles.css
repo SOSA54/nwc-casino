@@ -1,0 +1,75 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.user-controls input[type="search"] {
+    margin-right: 10px;
+}
+
+.user-controls button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.navigation {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    width: 200px;
+    height: 100vh; /* Full-height */
+    position: fixed;
+}
+
+.nav-link {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.nav-link.active {
+    background-color: #4CAF50;
+}
+
+main {
+    margin-left: 200px; /* Same as the width of the sidebar */
+    padding: 1px 16px;
+    height: 1000px; /* Used for demonstration */
+}
+
+.game-window, .bet-info {
+    background-color: #f1f1f1;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.game-placeholder, .bet-placeholder {
+    text-align: center;
+    padding: 50px;
+    background-color: #ddd;
+    margin-bottom: 20px;
+}
