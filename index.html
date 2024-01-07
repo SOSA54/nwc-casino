@@ -8,6 +8,15 @@
     <!-- Update the href to the correct relative path to tetris.css in your GitHub repository -->
     <link rel="stylesheet" href="jstetris-master/jstetris-master/src/tetris.css">
 </head>
+<script src="jstetris-master/jstetris-master/src/tetris.js"></script>
+    <script>
+        // Initialization script for the Tetris game from tetris.html
+        var tetris = new Tetris();
+        tetris.unit = 14; // The size of a single block in pixels
+        tetris.areaX = 12; // Width of the game area in blocks
+        tetris.areaY = 22; // Height of the game area in blocks
+    </script>
+    <script src="script.js"></script>
 <body>
     <header>
         <!-- Header content -->
@@ -31,14 +40,5 @@
         <!-- Footer content -->
     </footer>
     <!-- Update the src to the correct relative path to tetris.js in your GitHub repository -->
-    <script src="jstetris-master/jstetris-master/src/tetris.js"></script>
-    <script>
-        // Initialization script for the Tetris game from tetris.html
-        var tetris = new Tetris();
-        tetris.unit = 14; // The size of a single block in pixels
-        tetris.areaX = 12; // Width of the game area in blocks
-        tetris.areaY = 22; // Height of the game area in blocks
-    </script>
-    <script src="script.js"></script>
 </body>
 </html>
