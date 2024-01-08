@@ -1,51 +1,72 @@
 /* casino_style.css */
 
 body, html {
+    height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-  }
-  
-  #main-container {
+    background-color: #121212; /* Dark background */
+    color: #ffffff;
+}
+
+header {
     display: flex;
-    min-height: 100vh;
-  }
-  
-  .sidebar {
-    width: 250px;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-  }
-  
-  .sidebar div {
-    padding: 10px;
-    border-bottom: 1px solid #444;
-  }
-  
-  .header {
-    background-color: #222;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-  }
-  
-  .header button {
-    margin-left: 10px;
+    padding: 1rem;
+    background-color: #333;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.nav-links {
+    list-style-type: none;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.user-controls button {
     background-color: #444;
     border: none;
     padding: 10px 20px;
     color: white;
     cursor: pointer;
-  }
-  
-  .game-content {
-    flex-grow: 1;
-    background-color: #f0f0f0;
+    margin-left: 10px;
+}
+
+.side-menu {
+    width: 250px;
+    background-color: #333;
     padding: 20px;
-  }
+    color: #fff;
+    /* Position your side menu correctly using absolute, fixed, or part of flex/grid layout */
+}
+
+.main-content {
+    padding: 20px;
+    /* Layout the main content area as needed */
+}
+
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Add additional styles and media queries for responsiveness */
+
   
   /* Additional styling for the Tetris game and other content will go here */
   
@@ -59,7 +80,7 @@ body, table, input {
 	font-size: 11px;
 	line-height: 1.2em;
 	font-family: tahoma;
-	color: #826C55;
+	color: #fbfdff;
 }
 
 #tetris	{
@@ -67,11 +88,11 @@ body, table, input {
 	width: 300px;
 	height:	309px;
 	background:	#fff;
-	border:	#BE9E7C	1px	solid;
+	border:	#143066	1px	solid;
 }
 
 #tetris	.left {
-	background:	#F5EDE3;
+	background:	#5ca8de;
 	position: absolute;
 	width: 131px;
 	height:	100%;
@@ -82,7 +103,7 @@ body, table, input {
 
 #tetris-area {
 	/* 168,308 +2px	borders	*/
-	background:	#fff;
+	background:	#6c6a6a;
 	position: absolute;
 	width: 167px;
 	height:	307px;
@@ -91,7 +112,7 @@ body, table, input {
 	overflow: hidden;
 }
 
-.grid1,	.grid2,	.grid3,	.grid4,	.grid5,	.grid6 { z-index: 10; position:	absolute; top: 0px;	width: 13px; height: 307px;	background:	#f4efe9; }
+.grid1,	.grid2,	.grid3,	.grid4,	.grid5,	.grid6 { z-index: 10; position:	absolute; top: 0px;	width: 13px; height: 307px;	background:	#4f4e4e; }
 .grid1 { left: 14px; }
 .grid2 { left: 42px; }
 .grid3 { left: 70px; }
@@ -145,11 +166,11 @@ body, table, input {
 	display: block;
 	text-decoration: none;
 	color: #333333;
-	background:	#EAE0D1;
+	background:	rgb(92, 168, 222);
 	border-width: 1px;
 	margin-bottom: -1px;
 	border-style: solid;
-	border-color: #BE9E7C;
+	border-color: #556ae3;
 	cursor:	pointer;
 	text-align:	left;
 	padding-left: 10px;

@@ -20,153 +20,209 @@
       width: 250px;
       background-color: #333;
       color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .header {
-      background-color: #222;
-      color: white;
-      padding: 10px;
-      text-align: right;
+    .sidebar .logo, .sidebar nav, .sidebar .join-now {
+      padding: 20px;
     }
     .game-content {
       flex-grow: 1;
       background-color: #f0f0f0;
-      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    /* Add more styles here */
+    .footer {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
+  
   <div id="main-container">
+    <!-- Sidebar -->
     <aside class="sidebar">
-      <!-- Sidebar content here -->
-      <div>Casino</div>
-      <div>Slots</div>
-      <!-- Add more navigation items here -->
-    </aside>
-    <div class="game-content">
-      <div class="header">
-        <button>Sign In</button>
-        <button>Sign Up</button>
+      <div class="logo">
+        <h2>Crypto Casino</h2>
       </div>
-      <!-- Tetris game content will go here -->
+      <nav>
+        <a href="#">Home</a><br>
+        <a href="#">Games</a><br>
+        <a href="#">Winners</a><br>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="join-now">
+        <button>Join Now</button>
+      </div>
+    </aside>
+
+    <!-- Game Content -->
+    <div class="game-content">
       <div id="tetris">
         <table style="width: 100%; height: 100%;" cellspacing="0" cellpadding="0"><tr><td style="vertical-align: middle;">
 
-            <div id="tetris">
-                <div class="left">
-                    <h1><a href="https://github.com/cztomczak/jstetris">Js	Tetris 1.20</a></h1>
-                    <div class="menu">
-                        <div><a href="javascript:void(0)" id="tetris-menu-start">New Game</a></div>
-                        <div id="tetris-pause">
-                            <a href="javascript:void(0)" id="tetris-menu-pause">Pause</a>
-                        </div>
-                        <div style="display: none;" id="tetris-resume">
-                            <a href="javascript:void(0)" id="tetris-menu-resume">Resume</a>
-                        </div>
-                        <div><a href="javascript:void(0)" id="tetris-menu-highscores">Highscores</a></div>
-                        <div><a href="javascript:void(0)" id="tetris-menu-help">About</a></div>
-                    </div>
-                    <div id="tetris-nextpuzzle"></div>
-                    <div id="tetris-gameover">Game Over</div>
-                    <div id="tetris-keys">
-                        <div class="h5">Keyboard:</div>
-                        <table cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td>Rotate:</td>
-                            <td></td>
-                            <td><img src="key-up.gif" width="14" height="14" alt=""></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Move:</td>
-                            <td><img src="key-left.gif" width="14" height="14" alt=""></td>
-                            <td><img src="key-down.gif" width="14" height="14" alt=""></td>
-                            <td><img src="key-right.gif" width="14" height="14" alt=""></td>
-                        </tr>
-                        <tr>
-                            <td>Fall:</td>
-                            <td colspan="3">
-                                <img src="key-space.gif" width="44" height="13" alt="">
-                            </td>
-                        </tr>
-                        </table>
-                    </div>
-                    <div class="stats">
-                        <div class="h5">Statistics:</div>
-                        <table cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td	class="level">Level:</td>
-                            <td><span id="tetris-stats-level">1</span></td>
-                        </tr>
-                        <tr>
-                            <td	class="score">Score:</td>
-                            <td><span id="tetris-stats-score">0</span></td>
-                        </tr>
-                        <tr>
-                            <td	class="lines">Lines:</td>
-                            <td><span id="tetris-stats-lines">0</span></td>
-                        </tr>
-                        <tr>
-                            <td	class="apm">APM:</td>
-                            <td><span id="tetris-stats-apm">0</span></td>
-                        </tr>
-                        <tr>
-                            <td	class="time">Time:</td>
-                            <td><span id="tetris-stats-time">0</span></td>
-                        </tr>
+          <div id="tetris">
+            <div class="left">
+              <h1><a href="https://newscrypto.io/">NWC Block Battle</a></h1>
+              <div class="menu">
+                <div><a href="javascript:void(0)" id="tetris-menu-start">New Game</a></div>
+                <div id="tetris-pause">
+                  <a href="javascript:void(0)" id="tetris-menu-pause">Pause</a>
+                </div>
+                <div style="display: none;" id="tetris-resume">
+                  <a href="javascript:void(0)" id="tetris-menu-resume">Resume</a>
+                </div>
+                <div><a href="javascript:void(0)" id="tetris-menu-highscores">Highscores</a></div>
+                <div><a href="javascript:void(0)" id="tetris-menu-help">About</a></div>
+              </div>
+              <div id="tetris-nextpuzzle"></div>
+              <div id="tetris-gameover">Game Over</div>
+              <div id="tetris-keys">
+                <div class="h5">Keyboard:</div>
+                <table cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>Rotate:</td>
+                  <td></td>
+                  <td><img src="key-up.gif" width="14" height="14" alt=""></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Move:</td>
+                  <td><img src="key-left.gif" width="14" height="14" alt=""></td>
+                  <td><img src="key-down.gif" width="14" height="14" alt=""></td>
+                  <td><img src="key-right.gif" width="14" height="14" alt=""></td>
+                </tr>
+                <tr>
+                  <td>Fall:</td>
+                  <td colspan="3">
+                    <img src="key-space.gif" width="44" height="13" alt="">
+                  </td>
+                </tr>
+                </table>
+              </div>
+              <div class="stats">
+                <div class="h5">Statistics:</div>
+                <table cellspacing="0" cellpadding="0">
+                <tr>
+                  <td	class="level">Level:</td>
+                  <td><span id="tetris-stats-level">1</span></td>
+                </tr>
+                <tr>
+                  <td	class="score">Score:</td>
+                  <td><span id="tetris-stats-score">0</span></td>
+                </tr>
+                <tr>
+                  <td	class="lines">Lines:</td>
+                  <td><span id="tetris-stats-lines">0</span></td>
+                </tr>
+                <tr>
+                  <td	class="apm">APM:</td>
+                  <td><span id="tetris-stats-apm">0</span></td>
+                </tr>
+                <tr>
+                  <td	class="time">Time:</td>
+                  <td><span id="tetris-stats-time">0</span></td>
+                </tr>
         
-                        </table>
-                    </div>
-                </div>
-                <div class="left-border"></div>
-                <div id="tetris-area">
-                    <div class="grid1"></div>
-                    <div class="grid2"></div>
-                    <div class="grid3"></div>
-                    <div class="grid4"></div>
-                    <div class="grid5"></div>
-                    <div class="grid6"></div>
-                </div>
-                <div id="tetris-help" class="window">
-                    <div class="top">
-                        About <span id="tetris-help-close" class="close">x</span>
-                    </div>
-                    <div class="content" style="margin-top:	1em;">
-                        <div style="margin-top:	1em;">
-                        <div>JsTetris is a highly customizable tetris game written in javascript,
-                        full sources available, it is free to modify.
-                        </div>
-                        <br>
-                        <div>Author: Czarek Tomczak</div>
-                        <div>Site: <a href="https://github.com/cztomczak/jstetris">github.com/cztomczak/jstetris</a></div>
-                        <br>
-                        <div>License: BSD revised (free for any use)</div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tetris-highscores"	class="window">
-                    <div class="top">
-                        Highscores <span id="tetris-highscores-close" class="close">x</span>
-                    </div>
-                    <div class="content">
-                        <div id="tetris-highscores-content"></div>
-                        <br>
-                        Note: these	scores are kept	in cookies,	they are only visible to your computer.
-                    </div>
-                </div>
+                </table>
+              </div>
             </div>
-        
+            <div class="left-border"></div>
+            <div id="tetris-area">
+              <div class="grid1"></div>
+              <div class="grid2"></div>
+              <div class="grid3"></div>
+              <div class="grid4"></div>
+              <div class="grid5"></div>
+              <div class="grid6"></div>
+            </div>
+            <div id="tetris-help" class="window">
+              <div class="top">
+                About <span id="tetris-help-close" class="close">x</span>
+              </div>
+              <div class="content" style="margin-top:	1em;">
+                <div style="margin-top:	1em;">
+                <div>JsTetris is a highly customizable tetris game written in javascript,
+                full sources available, it is free to modify.
+                </div>
+                <br>
+                <div>Author: Czarek Tomczak</div>
+                <div>Site: <a href="https://github.com/cztomczak/jstetris">github.com/cztomczak/jstetris</a></div>
+                <br>
+                <div>License: BSD revised (free for any use)</div>
+                </div>
+              </div>
+            </div>
+            <div id="tetris-highscores"	class="window">
+              <div class="top">
+                Highscores <span id="tetris-highscores-close" class="close">x</span>
+              </div>
+              <div class="content">
+                <div id="tetris-highscores-content"></div>
+                <br>
+                Note: these	scores are kept	in cookies,	they are only visible to your computer.
+              </div>
+            </div>
+          </div>
+          <header>
+            <div class="logo">NWC</div>
+            <nav>
+              <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Support</a></li>
+              </ul>
+            </nav>
+            <div class="user-controls">
+              <button id="signIn">Sign In</button>
+              <button id="signUp" class="sign-up">Sign Up</button>
+            </div>
+          </header>
+          
+          <aside class="side-menu">
+            <!-- Side Menu similar to BC.GAME here -->
+            <ul>
+              <li><a href="#">Casino</a></li>
+              <li><a href="#">Sports</a></li>
+              <li><a href="#">Racing</a></li>
+              <li><a href="#">Lottery</a></li>
+              <!-- Additional menu items -->
+            </ul>
+          </aside>
+          
+          <main class="main-content">
+            <div id="tetris-game">
+              <!-- Tetris game will be integrated here -->
+            </div>
+          </main>
+          
+          <footer>
+            <p>&copy; 2024 NWC Arcade Casino. All rights reserved.</p>
+          </footer>
+          
+          <script src="script.js"></script>
         </td></tr></table>
       </div>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© Crypto Casino. All rights reserved.</p>
+  </footer>
+
   <script type="text/javascript" src="jstetris-master/jstetris-master/src/tetris.js"></script>
   <script type="text/javascript">
     var tetris = new Tetris();
     tetris.unit = 14;
     tetris.areaX = 12;
     tetris.areaY = 22;
-    // ...more scripts...
+    // Additional Tetris game initialization scripts
   </script>
 </body>
 </html>
