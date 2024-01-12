@@ -216,7 +216,9 @@ function Tetris()
 		document.getElementById("tetris-nextpuzzle").style.display = "none";
 		document.getElementById("tetris-gameover").style.display = "block";
 		if (this.highscores.mayAdd(this.stats.getScore())) {
-			var name = prompt("Game Over !\nEnter your name:", "");
+			if (typeof socket !== 'undefined') {
+				socket.emit('gameOver', { loserId: socket.id });
+			}
 			if (name && name.trim().length) {
 				this.highscores.add(name, this.stats.getScore());
 			}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your existing head content -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/jstetris-master/jstetris-master/src/tetris.css"	rel="stylesheet" type="text/css">
+        <link href="/jstetris-master/jstetris-master/src/tetris.ico" rel="shortcut icon">
+        <script	type="text/javascript" src="/jstetris-master/jstetris-master/src/tetris.js"></script>
+        <style type="text/css"> 
+        <title>CryptoCasino</title>
+        <style>
+            input[type="email"], input[type="password"] {
+        color: black; /* Change text color to black */
+        background-color: white; /* Optional: change background color if needed */
+        padding: 8px; /* Optional: add some padding for better visibility */
+        margin: 5px 0; /* Optional: add some margin for spacing */
+        border-radius: 4px; /* Optional: round the corners */
+        border: 1px solid #ccc; /* Optional: add a border */
+    }
+
+    input[type="email"]::placeholder, input[type="password"]::placeholder {
+        color: #474444; /* Optional: change placeholder text color */
+    }
+            body {
+                background-color: black;
+                color: rgb(255, 255, 255);
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+                font-family: sans-serif;
+            }
+            header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem 1.5rem;
+            }
+            header svg {
+                height: 2rem;
+                width: 2rem;
+                color: #48bb78; /* Tailwind green-500 */
+            }
+            h1 {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #48bb78;
+            }
+            nav a {
+                color: white;
+                text-decoration: none;
+                padding: 0.25rem 0.5rem;
+                transition: color 0.3s;
+            }
+            nav a:hover {
+                color: #48bb78;
+            }
+            main {
+                flex-grow: 1;
+                padding: 1rem 1.5rem;
+            }
+            .carousel {
+                width: 100%;
+                max-width: 32rem; /* Tailwind max-w-2xl */
+                height: 400px;
+                position: relative;
+            }
+            .carousel-slide {
+                padding: 0.25rem;
+                flex: 0 0 auto;
+                width: 100%;
+            }
+            .carousel-card {
+                background-color: #2d3748; /* Tailwind bg-card */
+                color: #a0aec0; /* Tailwind text-card-foreground */
+                border-radius: 0.5rem;
+                border: 1px solid transparent;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1.5rem;
+                height: 100%;
+            }
+            .carousel-button {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                border: 1px solid #cbd5e0; /* Tailwind border-input */
+                background-color: #edf2f7; /* Tailwind bg-background */
+                color: #4a5568; /* Tailwind text-accent-foreground */
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                height: 2rem;
+                width: 2rem;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.875rem;
+                cursor: pointer;
+            }
+            .carousel-button:hover {
+                background-color: #48bb78; /* Tailwind bg-accent */
+                color: white;
+            }
+            .carousel-button-left {
+                left: -3rem;
+            }
+            .carousel-button-right {
+                right: -3rem;
+            }
+            footer {
+                padding: 1rem 1.5rem;
+                background-color: #2d3748; /* Tailwind bg-gray-800 */
+                color: #a0aec0; /* Tailwind text-gray-400 */
+            }
+            .rounded-lg {
+                border-radius: 0.5rem;
+            }
+            .border {
+                border: 1px solid transparent;
+            }
+            .shadow-sm {
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+            .aspect-square {
+                aspect-ratio: 1;
+            }
+            .p-1 {
+                padding: 0.25rem;
+            }
+            .p-6 {
+                padding: 1.5rem;
+            }
+            .mt-8 {
+                margin-top: 2rem;
+            }
+            .text-xl {
+                font-size: 1.25rem;
+            }
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+            .text-4xl {
+                font-size: 2.25rem;
+            }
+            .font-bold {
+                font-weight: bold;
+            }
+            .flex {
+                display: flex;
+            }
+            .items-center {
+                align-items: center;
+            }
+            .justify-center {
+                justify-content: center;
+            }
+            .space-x-4 > * + * {
+                margin-left: 1rem;
+            }
+            .space-y-2 > * + * {
+                margin-top: 0.5rem;
+            }
+            .play-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.play-button {
+    background-color: #48bb78; /* Green color */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.play-button:hover {
+    background-color: #38a169; /* Darker green */
+}
+
+        </style>
+    </head>
+    <title>Home - CryptoCasino</title>
+</head>
+<body>
+    <!-- Existing Content -->
+
+    <!-- Google Sign-in Button -->
+    <div class="play-button-container">
+        <a href="/auth/google" class="play-button">Sign in with Google</a>
+    </div>
+
+    <!-- Email Sign-up/Login Form -->
+    <div class="play-button-container">
+        <form action="/signup" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="play-button">Sign up / Login</button>
+        </form>
+    </div>
+
+    <!-- Play Tetris Button -->
+    <div class="play-button-container">
+        <a href="index2.html" class="play-button">Play Tetris for $1</a>
+    </div>
+
+    <!-- Existing Footer -->
+</body>
+
+</html>
