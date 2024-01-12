@@ -1,354 +1,154 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- v0 by Vercel. https://v0.dev/t/tEXvORtJeb9 -->
+<div class="dark min-h-screen flex flex-col bg-black text-white">
+  <header class="flex items-center justify-between px-6 py-4">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="/jstetris-master/jstetris-master/src/tetris.css"	rel="stylesheet" type="text/css">
 	<link href="/jstetris-master/jstetris-master/src/tetris.ico" rel="shortcut icon">
 	<script	type="text/javascript" src="/jstetris-master/jstetris-master/src/tetris.js"></script>
-	<style type="text/css"> 
-    <title>CryptoCasino</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            font-family: sans-serif;
-        }
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.5rem;
-        }
-        header svg {
-            height: 2rem;
-            width: 2rem;
-            color: #48bb78; /* Tailwind green-500 */
-        }
-        h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #48bb78;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.25rem 0.5rem;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #48bb78;
-        }
-        main {
-            flex-grow: 1;
-            padding: 1rem 1.5rem;
-        }
-        .carousel {
-            width: 100%;
-            max-width: 32rem; /* Tailwind max-w-2xl */
-            height: 400px;
-            position: relative;
-        }
-        .carousel-slide {
-            padding: 0.25rem;
-            flex: 0 0 auto;
-            width: 100%;
-        }
-        .carousel-card {
-            background-color: #2d3748; /* Tailwind bg-card */
-            color: #a0aec0; /* Tailwind text-card-foreground */
-            border-radius: 0.5rem;
-            border: 1px solid transparent;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            height: 100%;
-        }
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            border: 1px solid #cbd5e0; /* Tailwind border-input */
-            background-color: #edf2f7; /* Tailwind bg-background */
-            color: #4a5568; /* Tailwind text-accent-foreground */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            height: 2rem;
-            width: 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.875rem;
-            cursor: pointer;
-        }
-        .carousel-button:hover {
-            background-color: #48bb78; /* Tailwind bg-accent */
-            color: white;
-        }
-        .carousel-button-left {
-            left: -3rem;
-        }
-        .carousel-button-right {
-            right: -3rem;
-        }
-        footer {
-            padding: 1rem 1.5rem;
-            background-color: #2d3748; /* Tailwind bg-gray-800 */
-            color: #a0aec0; /* Tailwind text-gray-400 */
-        }
-        .rounded-lg {
-            border-radius: 0.5rem;
-        }
-        .border {
-            border: 1px solid transparent;
-        }
-        .shadow-sm {
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .aspect-square {
-            aspect-ratio: 1;
-        }
-        .p-1 {
-            padding: 0.25rem;
-        }
-        .p-6 {
-            padding: 1.5rem;
-        }
-        .mt-8 {
-            margin-top: 2rem;
-        }
-        .text-xl {
-            font-size: 1.25rem;
-        }
-        .text-2xl {
-            font-size: 1.5rem;
-        }
-        .text-4xl {
-            font-size: 2.25rem;
-        }
-        .font-bold {
-            font-weight: bold;
-        }
-        .flex {
-            display: flex;
-        }
-        .items-center {
-            align-items: center;
-        }
-        .justify-center {
-            justify-content: center;
-        }
-        .space-x-4 > * + * {
-            margin-left: 1rem;
-        }
-        .space-y-2 > * + * {
-            margin-top: 0.5rem;
-        }
-    </style>
-</head>
-<body>
-    <div class="dark bg-black text-white min-h-screen flex flex-col">
-        <header class="flex items-center justify-between px-6 py-4">
-            <div class="flex items-center space-x-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-green-500">
-                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
-                    <path d="M12 12h.01"></path>
-                </svg>
-                <h1 class="text-2xl font-bold text-green-500">CryptoCasino</h1>
-            </div>
-            <nav class="flex space-x-4">
-                <a class="hover:text-green-500" href="#" rel="ugc">Slots</a>
-                <a class="hover:text-green-500" href="#" rel="ugc">Poker</a>
-                <a class="hover:text-green-500" href="#" rel="ugc">Roulette</a>
-            </nav>
-            <table style="width: 100%; height: 100%;" cellspacing="0" cellpadding="0"><tr><td style="vertical-align: middle;">
-
-                <div id="tetris">
-                    <div class="left">
-                        <h1><a href="https://github.com/cztomczak/jstetris">Js	Tetris 1.20</a></h1>
-                        <div class="menu">
-                            <div><a href="javascript:void(0)" id="tetris-menu-start">New Game</a></div>
-                            <div id="tetris-pause">
-                                <a href="javascript:void(0)" id="tetris-menu-pause">Pause</a>
-                            </div>
-                            <div style="display: none;" id="tetris-resume">
-                                <a href="javascript:void(0)" id="tetris-menu-resume">Resume</a>
-                            </div>
-                            <div><a href="javascript:void(0)" id="tetris-menu-highscores">Highscores</a></div>
-                            <div><a href="javascript:void(0)" id="tetris-menu-help">About</a></div>
-                        </div>
-                        <div id="tetris-nextpuzzle"></div>
-                        <div id="tetris-gameover">Game Over</div>
-                        <div id="tetris-keys">
-                            <div class="h5">Keyboard:</div>
-                            <table cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td>Rotate:</td>
-                                <td></td>
-                                <td><img src="key-up.gif" width="14" height="14" alt=""></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Move:</td>
-                                <td><img src="key-left.gif" width="14" height="14" alt=""></td>
-                                <td><img src="key-down.gif" width="14" height="14" alt=""></td>
-                                <td><img src="key-right.gif" width="14" height="14" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td>Fall:</td>
-                                <td colspan="3">
-                                    <img src="key-space.gif" width="44" height="13" alt="">
-                                </td>
-                            </tr>
-                            </table>
-                        </div>
-                        <div class="stats">
-                            <div class="h5">Statistics:</div>
-                            <table cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td	class="level">Level:</td>
-                                <td><span id="tetris-stats-level">1</span></td>
-                            </tr>
-                            <tr>
-                                <td	class="score">Score:</td>
-                                <td><span id="tetris-stats-score">0</span></td>
-                            </tr>
-                            <tr>
-                                <td	class="lines">Lines:</td>
-                                <td><span id="tetris-stats-lines">0</span></td>
-                            </tr>
-                            <tr>
-                                <td	class="apm">APM:</td>
-                                <td><span id="tetris-stats-apm">0</span></td>
-                            </tr>
-                            <tr>
-                                <td	class="time">Time:</td>
-                                <td><span id="tetris-stats-time">0</span></td>
-                            </tr>
-            
-                            </table>
-                        </div>
-                    </div>
-                    <div class="left-border"></div>
-                    <div id="tetris-area">
-                        <div class="grid1"></div>
-                        <div class="grid2"></div>
-                        <div class="grid3"></div>
-                        <div class="grid4"></div>
-                        <div class="grid5"></div>
-                        <div class="grid6"></div>
-                    </div>
-                    <div id="tetris-help" class="window">
-                        <div class="top">
-                            About <span id="tetris-help-close" class="close">x</span>
-                        </div>
-                        <div class="content" style="margin-top:	1em;">
-                            <div style="margin-top:	1em;">
-                            <div>JsTetris is a highly customizable tetris game written in javascript,
-                            full sources available, it is free to modify.
-                            </div>
-                            <br>
-                            <div>Author: Czarek Tomczak</div>
-                            <div>Site: <a href="https://github.com/cztomczak/jstetris">github.com/cztomczak/jstetris</a></div>
-                            <br>
-                            <div>License: BSD revised (free for any use)</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="tetris-highscores"	class="window">
-                        <div class="top">
-                            Highscores <span id="tetris-highscores-close" class="close">x</span>
-                        </div>
-                        <div class="content">
-                            <div id="tetris-highscores-content"></div>
-                            <br>
-                            Note: these	scores are kept	in cookies,	they are only visible to your computer.
-                        </div>
-                    </div>
-                </div>
-            
-            </td></tr></table>
-            
-        </header>
-        <main class="flex-1 px-6 py-4">
-            <div class="relative w-full max-w-2xl h-[400px]" role="region" aria-roledescription="carousel">
-                <div class="overflow-hidden">
-                    <div class="flex -ml-4 h-[420px]" style="transform: translate3d(0px, 0px, 0px);">
-                        <!-- Carousel Slides -->
-                        <div role="group" aria-roledescription="slide" class="min-w-0 shrink-0 grow-0 basis-full pl-4">
-                            <div class="p-1">
-                                <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-                                    <div class="flex aspect-square items-center justify-center p-6">
-                                        <h2 class="text-2xl font-bold text-green-500">Game 1</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="group" aria-roledescription="slide" class="min-w-0 shrink-0 grow-0 basis-full pl-4">
-                            <div class="p-1">
-                                <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-                                    <div class="flex aspect-square items-center justify-center p-6">
-                                        <h2 class="text-2xl font-bold text-green-500">Game 2</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="group" aria-roledescription="slide" class="min-w-0 shrink-0 grow-0 basis-full pl-4">
-                            <div class="p-1">
-                                <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-                                    <div class="flex aspect-square items-center justify-center p-6">
-                                        <h2 class="text-2xl font-bold text-green-500">Game 3</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Carousel Buttons -->
-                <button class="carousel-button carousel-button-left" disabled="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                        <path d="m12 19-7-7 7-7"></path>
-                        <path d="M19 12H5"></path>
-                    </svg>
-                    <span class="sr-only">Previous slide</span>
-                </button>
-                <button class="carousel-button carousel-button-right" disabled="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                    </svg>
-                    <span class="sr-only">Next slide</span>
-                </button>
-            </div>
-            <div class="mt-8">
-                <h2 class="text-xl font-bold">Live Jackpot Tracker</h2>
-                <p class="text-green-500 text-4xl mt-2">$123,456</p>
-            </div>
-            <div class="mt-8">
-                <h2 class="text-xl font-bold">Latest Winners</h2>
-                <ul class="mt-4 space-y-2">
-                    <li>Player 1 - $500</li>
-                    <li>Player 2 - $1,000</li>
-                    <li>Player 3 - $750</li>
-                </ul>
-            </div>
-        </main>
-        <footer class="px-6 py-4 bg-gray-800 text-gray-400">
-            <nav class="flex space-x-4">
-                <a class="hover:text-green-500" href="#" rel="ugc">Terms &amp; Conditions</a>
-                <a class="hover:text-green-500" href="#" rel="ugc">Privacy Policy</a>
-                <a class="hover:text-green-500" href="#" rel="ugc">Responsible Gambling</a>
-            </nav>
-        </footer>
-    </div>
     <script src="/node_modules/socket.io/client-dist/socket.io.js"></script>
-<script>
+      <h1 class="text-2xl font-bold text-green-500">NWC Games</h1>
+      <nav class="flex gap-4">
+          <a class="text-lg hover:text-green-500" href="#">Home</a>
+          <a class="text-lg hover:text-green-500" href="#">Games</a>
+          <a class="text-lg hover:text-green-500" href="#">About</a>
+      </nav>
+  </header>
+  <main class="flex-1 grid place-items-center p-6">
+      <section class="space-y-8">
+          <!--<h2 class="text-4xl font-bold text-center">1v1 Tetris</h2>-->
+          <div class="relative w-[300px] h-[600px] bg-gray-800 rounded-lg">
+              <div class="absolute inset-0 flex items-center justify-center text-2xl font-bold">
+                  Game Interface
+              </div>
+          </div>
+          <div class="flex justify-center space-x-4">
+              <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-10 px-4 py-2 bg-green-500 hover:bg-green-600">Play Now</button>
+              <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-10 px-4 py-2 bg-green-500 hover:bg-green-600">Tutorial</button>
+          </div>
+      </section>
+      <section class="mt-12 space-y-8">
+        <table style="width: 100%; height: 100%;" cellspacing="0" cellpadding="0"><tr><td style="vertical-align: middle;">
+
+            <div id="tetris">
+                <div class="left">
+                    <h1><a href="https://newscrypto.io">NWC TETRIS</a></h1>
+                    <div class="menu">
+                        <div><a href="javascript:void(0)" id="tetris-menu-start">New Game</a></div>
+                        <div id="tetris-pause">
+                            <a href="javascript:void(0)" id="tetris-menu-pause">Pause</a>
+                        </div>
+                        <div style="display: none;" id="tetris-resume">
+                            <a href="javascript:void(0)" id="tetris-menu-resume">Resume</a>
+                        </div>
+                        <div><a href="javascript:void(0)" id="tetris-menu-highscores">Highscores</a></div>
+                        <div><a href="javascript:void(0)" id="tetris-menu-help">About</a></div>
+                    </div>
+                    <div id="tetris-nextpuzzle"></div>
+                    <div id="tetris-gameover">Game Over</div>
+                    <div id="tetris-keys">
+                        <div class="h5">Keyboard:</div>
+                        <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>Rotate:</td>
+                            <td></td>
+                            <td><img src="key-up.gif" width="14" height="14" alt=""></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Move:</td>
+                            <td><img src="key-left.gif" width="14" height="14" alt=""></td>
+                            <td><img src="key-down.gif" width="14" height="14" alt=""></td>
+                            <td><img src="key-right.gif" width="14" height="14" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>Fall:</td>
+                            <td colspan="3">
+                                <img src="key-space.gif" width="44" height="13" alt="">
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                    <div class="stats">
+                        <div class="h5">Statistics:</div>
+                        <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td	class="level">Level:</td>
+                            <td><span id="tetris-stats-level">1</span></td>
+                        </tr>
+                        <tr>
+                            <td	class="score">Score:</td>
+                            <td><span id="tetris-stats-score">0</span></td>
+                        </tr>
+                        <tr>
+                            <td	class="lines">Lines:</td>
+                            <td><span id="tetris-stats-lines">0</span></td>
+                        </tr>
+                        <tr>
+                            <td	class="apm">APM:</td>
+                            <td><span id="tetris-stats-apm">0</span></td>
+                        </tr>
+                        <tr>
+                            <td	class="time">Time:</td>
+                            <td><span id="tetris-stats-time">0</span></td>
+                        </tr>
+        
+                        </table>
+                    </div>
+                </div>
+                <div class="left-border"></div>
+                <div id="tetris-area">
+                    <div class="grid1"></div>
+                    <div class="grid2"></div>
+                    <div class="grid3"></div>
+                    <div class="grid4"></div>
+                    <div class="grid5"></div>
+                    <div class="grid6"></div>
+                </div>
+                <div id="tetris-help" class="window">
+                    <div class="top">
+                        About <span id="tetris-help-close" class="close">x</span>
+                    </div>
+                    <div class="content" style="margin-top:	1em;">
+                        <div style="margin-top:	1em;">
+                        <div>NWC Tetris is a 1v1 skill-based crypto game. Can you beat your opponent?
+                        </div>
+                        <br>
+                        <div>Site: <a href="https://newscrypto.io"></a></div>
+                        <br>
+                        </div>
+                    </div>
+                </div>
+                <div id="tetris-highscores"	class="window">
+                    <div class="top">
+                        Highscores <span id="tetris-highscores-close" class="close">x</span>
+                    </div>
+                    <div class="content">
+                        <div id="tetris-highscores-content"></div>
+                        <br>
+                        Note: these	scores are kept	in cookies,	they are only visible to your computer.
+                    </div>
+                </div>
+            </div>
+        
+        </td></tr></table>
+          <h2 class="text-3xl font-bold text-center">Live Winnings</h2>
+          <div class="w-full max-w-2xl mx-auto grid grid-cols-2 gap-4">
+              <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                  <div class="p-4">
+                      <h3 class="text-lg font-bold">Player 1</h3>
+                      <p class="text-green-500">3.2 ETH</p>
+                  </div>
+              </div>
+              <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                  <div class="p-4">
+                      <h3 class="text-lg font-bold">Player 2</h3>
+                      <p class="text-green-500">1.8 ETH</p>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </main>
+    <script>
     const socket = io('http://localhost:3000');
 
     socket.on('waitingForOpponent', () => {
@@ -362,6 +162,9 @@
 
     socket.on('opponentWon', (data) => {
         alert("You win!");
+        function onGameOver() {
+    socket.emit('gameOver');
+}
         // Additional UI or game state updates can go here
     });
 
@@ -371,12 +174,13 @@
 
     // Additional logic to synchronize game state with the opponent
 </script>
-
-    <script	type="text/javascript">
-        var tetris = new Tetris();
-        tetris.unit = 14;
-        tetris.areaX = 12;
-        tetris.areaY = 22;
-        </script>
-</body>
-</html>
+  <script	type="text/javascript">
+    var tetris = new Tetris();
+    tetris.unit = 14;
+    tetris.areaX = 12;
+    tetris.areaY = 22;
+    </script>
+  <footer class="flex items-center justify-center py-4 text-gray-500">
+      <p>© NWC Games. All rights reserved.</p>
+  </footer>
+</div>
