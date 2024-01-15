@@ -9,6 +9,18 @@ body, table, input {
 	font-family: tahoma;
 	color: rgb(0, 0, 0);
 }
+.blockFilled {
+    width: 20px; /* same as tetris.unit */
+    height: 20px;
+    display: inline-block;
+    background-color: #000; /* or any color representing a filled block */
+}
+.blockEmpty {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-color: #fff; /* representing an empty block */
+}
 
 #tetris	{
 	position: relative;

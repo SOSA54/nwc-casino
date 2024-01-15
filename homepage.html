@@ -2,12 +2,10 @@
 <html>
 <head>
     <!-- Your existing head content -->
-    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/jstetris-master/jstetris-master/src/tetris.css"	rel="stylesheet" type="text/css">
         <link href="/jstetris-master/jstetris-master/src/tetris.ico" rel="shortcut icon">
-        <script	type="text/javascript" src="/jstetris-master/jstetris-master/src/tetris.js"></script>
+        <h1 class="text-2xl font-bold text-green-500">NWC Games</h1>
         <style type="text/css"> 
         <title>CryptoCasino</title>
         <style>
@@ -31,6 +29,11 @@
                 flex-direction: column;
                 margin: 0;
                 font-family: sans-serif;
+                display: flex; /* Enables flexbox layout */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
             }
             header {
                 display: flex;
@@ -166,7 +169,8 @@
             }
             .play-button-container {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 40px; /* Increased vertical spacing */
+    margin-bottom: 40px; /* Added bottom margin for spacing */
 }
 
 .play-button {
@@ -181,32 +185,46 @@
 .play-button:hover {
     background-color: #38a169; /* Darker green */
 }
+.form-container {
+            max-width: 300px; /* Set a maximum width for the form */
+            margin: 0 auto; /* Center the form horizontally */
+            padding: 20px; /* Optional padding for visual aesthetics */
+            text-align: center; /* Center align the elements within the form */
+        }
+        
+        .form-input {
+            width: 100%; /* Inputs take full width of the form container */
+            margin-bottom: 10px; /* Space between inputs */
+            padding: 8px; /* Padding for the inputs */
+        }
 
+        .play-button-container {
+            text-align: center; /* Center align the button container */
+            margin-top: 20px; /* Spacing above the container */
+        }
         </style>
-    </head>
     <title>Home - CryptoCasino</title>
 </head>
 <body>
     <!-- Existing Content -->
 
-    <!-- Google Sign-in Button -->
-    <div class="play-button-container">
-        <a href="/auth/google" class="play-button">Sign in with Google</a>
-    </div>
-
     <!-- Email Sign-up/Login Form -->
-    <div class="play-button-container">
-        <form action="/signup" method="post">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
+    <div class="form-container">
+        <form action="/signup.html" method="post">
+            <input type="email" name="email" placeholder="Email" required class="form-input">
+            <input type="password" name="password" placeholder="Password" required class="form-input">
             <button type="submit" class="play-button">Sign up / Login</button>
         </form>
     </div>
 
-    <!-- Play Tetris Button -->
+        <!-- Google Sign-in Button -->
+        <div class="play-button-container">
+            <a href="/auth/google" class="play-button">Sign in with Google</a>
+        </div>
+    <!-- Play Tetris Button 
     <div class="play-button-container">
-        <a href="index2.html" class="play-button">Play Tetris for $1</a>
-    </div>
+        <a href="index.html" class="play-button">Play Tetris for $1</a>
+    </div> -->
 
     <!-- Existing Footer -->
 </body>

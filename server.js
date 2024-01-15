@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
-
+const playerMapping = {};
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, {
@@ -11,6 +11,15 @@ const io = socketIO(server, {
     }
 });
 
+app.get('/signup.html', (req, res) => {
+    res.sendFile(__dirname + '/signup.html'); // Replace 'signup.html' with the actual file path if needed
+});
+
+app.get('/homepage.html', (req, res) => {
+    res.sendFile(__dirname + '/homepage.html'); // Replace 'homepage.html' with the actual file path if needed
+});
+
+
 let waitingPlayer = null;
 
 io.on('connection', (socket) => {
@@ -18,6 +27,8 @@ io.on('connection', (socket) => {
 
     if (waitingPlayer) {
         // Pair up players
+        playerMapping[socket.id] = waitingPlayer.id;
+    playerMapping[waitingPlayer.id] = socket.id;
         [socket, waitingPlayer].forEach(s => s.emit('gameStart', { opponentId: s.id }));
         waitingPlayer = null;
     } else {
@@ -31,6 +42,9 @@ io.on('connection', (socket) => {
         if (waitingPlayer === socket) {
             waitingPlayer = null;
         }
+        const opponentId = playerMapping[socket.id];
+    delete playerMapping[socket.id];
+    delete playerMapping[opponentId];
     });
 
     socket.on('gameOver', (data) => {
@@ -41,7 +55,14 @@ io.on('connection', (socket) => {
 
     socket.on('opponentWon', (data) => {
         alert("You win!");
-        // You can also update the UI or game state as necessary
+        // Yo seru can also update the UI or game state as necessary
+    });
+    // Server-side: Relay game state to the other player
+    socket.on('gameStateUpdate', (gameState) => {
+        let opponentId = playerMapping[socket.id];
+        if (opponentId) {
+            socket.to(opponentId).emit('opponentGameState', gameState);
+        }
     });
     
     // Additional game state synchronization events can be added here

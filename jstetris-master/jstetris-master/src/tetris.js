@@ -237,6 +237,8 @@ function Tetris()
 				self.stats.setActions(self.stats.getActions() + 1);
 			}
 		}
+		var gameState = getGameState();
+    socket.emit('gameStateUpdate', gameState);
 	};
 
 	/**
@@ -252,6 +254,8 @@ function Tetris()
 				self.stats.setActions(self.stats.getActions() + 1);
 			}
 		}
+		var gameState = getGameState();
+		socket.emit('gameStateUpdate', gameState);
 	};
 
 	/**
@@ -266,6 +270,8 @@ function Tetris()
 				self.stats.setActions(self.stats.getActions() + 1);
 			}
 		}
+		var gameState = getGameState();
+    socket.emit('gameStateUpdate', gameState);
 	};
 
 	/**
@@ -280,6 +286,8 @@ function Tetris()
 				self.stats.setActions(self.stats.getActions() + 1);
 			}
 		}
+		var gameState = getGameState();
+    socket.emit('gameStateUpdate', gameState);
 	};
 
 	/**
@@ -292,6 +300,8 @@ function Tetris()
 			self.puzzle.stop();
 			self.puzzle.forceMoveDown();
 		}
+		var gameState = getGameState();
+		socket.emit('gameStateUpdate', gameState);
 	};
 
 	// windows
@@ -427,6 +437,28 @@ function Tetris()
 			}
 		};
 	}
+	function getGameState() {
+		var stats = tetris.stats;
+		var gameState = {
+			level: stats.getLevel(),
+			score: stats.getScore(),
+			lines: stats.getLines(),
+			grid: captureGridState()
+		};
+		return gameState;
+	}
+	
+	function captureGridState() {
+		var grid = [];
+		for (var y = 0; y < tetris.area.y; y++) {
+			grid[y] = [];
+			for (var x = 0; x < tetris.area.x; x++) {
+				grid[y][x] = tetris.area.board[y][x] ? 1 : 0;
+			}
+		}
+		return grid;
+	}
+	
 
 	/**
 	 * Live game statistics
@@ -1154,6 +1186,8 @@ function Tetris()
 				}
 			}
 			this.board = puzzle;
+			var gameState = getGameState();
+    socket.emit('gameStateUpdate', gameState);
 		};
 
 		/**
