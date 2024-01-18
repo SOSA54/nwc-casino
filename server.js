@@ -65,6 +65,30 @@ const db = mysql.createConnection({
         res.json({ message: 'Login successful' });
     });
 });
+app.post('/start-game', async (req, res) => {
+    const userId = req.body.userId; // or however you get the user's ID
+    const gameCost = 10; // set the cost of the game
+
+    // Query to deduct the balance
+    const deductBalanceQuery = 'UPDATE user_balances SET balance = balance - ? WHERE user_id = ?';
+    db.query(deductBalanceQuery, [gameCost, userId], (err, result) => {
+        if (err) {
+            // Handle any errors, such as insufficient balance
+            return res.status(500).send('Error processing your request');
+        }
+
+        // If balance is successfully deducted, fetch the updated balance
+        const fetchBalanceQuery = 'SELECT balance FROM user_balances WHERE user_id = ?';
+        db.query(fetchBalanceQuery, [userId], (err, results) => {
+            if (err || results.length === 0) {
+                return res.status(500).send('Error fetching updated balance');
+            }
+
+            // Send the updated balance back to the client
+            res.json({ balance: results[0].balance });
+        });
+    });
+});
 
 app.post('/signup', async (req, res) => {
     const { email, password } = req.body;

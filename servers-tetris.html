@@ -92,6 +92,7 @@
                             <p class="text-gray-400">Join Now</p>
                         </div>
                     </div>
+                    <button class="play-button" data-cost="10">Play</button> 
                 </a>
                 <!-- Server 2 -->
                 <a href="/tetris-game.html" class="server-tile">
@@ -102,6 +103,7 @@
                             <p class="text-gray-400">Join Now</p>
                         </div>
                     </div>
+                    <button class="play-button" data-cost="10">Play</button> 
                 </a>
                 <!-- Server 3 -->
                 <a href="/tetris-game.html" class="server-tile">
@@ -112,6 +114,7 @@
                             <p class="text-gray-400">Join Now</p>
                         </div>
                     </div>
+                    <button class="play-button" data-cost="10">Play</button> 
                 </a>
                 <!-- Server 4 -->
                 <a href="/tetris-game.html" class="server-tile">
@@ -122,6 +125,7 @@
                             <p class="text-gray-400">Join Now</p>
                         </div>
                     </div>
+                    <button class="play-button" data-cost="10">Play</button> 
                 </a>
                 <!-- Server 5 -->
                 <a href="/tetris-game.html" class="server-tile">
@@ -132,6 +136,7 @@
                             <p class="text-gray-400">Join Now</p>
                         </div>
                     </div>
+                    <button class="play-button" data-cost="10">Play</button> 
                 </a>
             </div>
         </div>
@@ -143,7 +148,39 @@
     </footer>
 
     <script>
-        // Placeholder for any required JavaScript
+        // Add an event listener for all Play buttons
+        const playButtons = document.querySelectorAll(".play-button");
+        playButtons.forEach((button) => {
+            button.addEventListener("click", (event) => {
+                event.preventDefault();
+                const cost = parseInt(button.getAttribute("data-cost"));
+    
+                // Send a request to the server to deduct the DNWC
+                fetch("/start-game", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ cost }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Update the user's balance on the client-side
+                        const walletBalance = document.getElementById("walletBalance");
+                        const currentBalance = parseInt(walletBalance.textContent);
+                        const newBalance = currentBalance - cost;
+                        walletBalance.textContent = `${newBalance} DNWC`;
+    
+                        // Redirect the user to the game server
+                        window.location.href = button.parentElement.getAttribute("href");
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        alert("Error deducting DNWC. Please try again.");
+                    });
+            });
+        });
     </script>
+    
 </body>
 </html>
