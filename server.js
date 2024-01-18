@@ -3,7 +3,7 @@ const http = require('http');
 const socketIO = require('socket.io');
 const playerMapping = {};
 const app = express();
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const server = http.createServer(app);
@@ -34,15 +34,9 @@ app.post('/signup', (req, res) => {
 });
 app.use(bodyParser.json());
 
-
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
-
 const db = mysql.createConnection({
     host: 'localhost',
-    user: 'newusername', // Replace with your MySQL username
+    user: 'ozbej', // Replace with your MySQL username
     password: 'testtest', // Replace with your MySQL password
     database: 'nwc' // Replace with your MySQL database name
   });
@@ -92,18 +86,6 @@ app.post('/signup', async (req, res) => {
         }
     });
 });
-
-db.query('SELECT * FROM users WHERE email = ?', [email], function(err, results) {
-    if (err) {
-        // handle error
-    } else if (results.length > 0) {
-        // User exists, send an appropriate response
-    } else {
-        // User does not exist, proceed with registration
-    }
-});
-
-  
 
 io.on('connection', (socket) => {
     console.log('A player connected:', socket.id);
