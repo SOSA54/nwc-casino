@@ -9,6 +9,7 @@
     <link href="/casino images/nwc.ico" rel="shortcut icon">
     <script	type="text/javascript" src="/jstetris-master/jstetris-master/src/tetris.js"></script>
     <script src="/node_modules/socket.io/client-dist/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
 <style>
 
 #player-game, #tetris-area, .window, #opponent-game {
@@ -235,7 +236,6 @@ function displayOpponentGameState(gameState) {
     // Update the UI based on the opponent's game state
 }
 function getGameState() {}
-
 
     socket.on('gameStart', (data) => {
         console.log('Game started with opponent:', data.opponentId);
