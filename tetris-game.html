@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NWC Games</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/jstetris-master/jstetris-master/src/tetris.css"	rel="stylesheet" type="text/css">
+    <link href="/casino images/nwc.ico" rel="shortcut icon">
+    <script	type="text/javascript" src="/jstetris-master/jstetris-master/src/tetris.js"></script>
+    <script src="/node_modules/socket.io/client-dist/socket.io.js"></script>
+<style>
+
+#player-game, #tetris-area, .window, #opponent-game {
+    border-radius: 1rem; /* This gives a rounded edge to these elements */
+}
+
+#tetris .left {
+    border-top-left-radius: 0.5rem; /* Rounded top-left corner */
+    border-bottom-left-radius: 0.5rem; /* Rounded bottom-left corner */
+    width: 262px; /* double the original width */
+}
+
+.wallet-container {
+    display: flex;
+    align-items: center;
+    background-color: #333; /* Adjust the color to match your theme */
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-family: 'Arial', sans-serif; /* Use your preferred font here */
+    font-size: 14px; /* Adjust the size as needed */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+}
+
+.wallet-icon {
+    width: 20px; /* Adjust the size as needed */
+    height: 20px; /* Adjust the size as needed */
+    margin-right: 5px;
+    background-image: url("/casino images/nwc.ico"); /* Path to your .ico file */
+    background-size: cover;
+    border-radius: 50%; /* Makes the icon round */
+}
+
+.wallet-balance {
+    font-weight: bold; /* Makes the balance text bold */
+}
+
+/* Add this CSS after your TailwindCSS import */
+
+</style>
+
+    <!-- TailwindCSS for quick styling -->
+</head>
+<body class="dark min-h-screen flex flex-col bg-gray-900 text-white font-sans">
+    <header class="flex items-center justify-between px-6 py-4 bg-gray-800">
+        <h1 class="text-2xl font-bold text-green-500">NWC Games</h1>
+        <div class="wallet-container">
+            <div class="wallet-icon"></div>
+            <span id="walletBalance" class="wallet-balance">100 DNWC</span>
+        </div>
+        <nav class="flex gap-4">
+            <a class="text-lg hover:text-green-500" href="/homepage.html">Home</a>
+            <a class="text-lg hover:text-green-500" href="/games.html">Games</a>
+            <a class="text-lg hover:text-green-500" href="/homepage.html">Log in</a>
+        </nav>
+    </header>
+    
+
+    <main class="flex-1 grid place-items-center p-6">
+        <h2 class="text-3xl font-bold text-center pb-4">1v1 Tetris</h2>
+            <div class="relative w-[300px] h-[600px] bg-gray-800 rounded-lg">
+            </div>
+        <section class="space-y-8">
+                <div id="tetris">
+                    <div class="left">
+                        <h1><a href="https://newscrypto.io">NWC TETRIS</a></h1>
+                        <div class="menu">
+                            <div><a href="javascript:void(0)" id="tetris-menu-start">New Game</a></div>
+                            <div id="tetris-pause">
+                                <a href="javascript:void(0)" id="tetris-menu-pause">Pause</a>
+                            </div>
+                            <div style="display: none;" id="tetris-resume">
+                                <a href="javascript:void(0)" id="tetris-menu-resume">Resume</a>
+                            </div>
+                            <div><a href="javascript:void(0)" id="tetris-menu-highscores">Highscores</a></div>
+                            <div><a href="javascript:void(0)" id="tetris-menu-help">About</a></div>
+                        </div>
+                        <div id="tetris-nextpuzzle"></div>
+                        <div id="tetris-gameover">Game Over</div>
+                        <div id="tetris-keys">
+                            <div class="h5">Keyboard:</div>
+                            <table cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td>Rotate:</td>
+                                    <td></td>
+                                    <td><img src="key-up.gif" width="14" height="14" alt=""></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Move:</td>
+                                    <td><img src="key-left.gif" width="14" height="14" alt=""></td>
+                                    <td><img src="key-down.gif" width="14" height="14" alt=""></td>
+                                    <td><img src="key-right.gif" width="14" height="14" alt=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Fall:</td>
+                                    <td colspan="3">
+                                        <img src="key-space.gif" width="44" height="13" alt="">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="stats">
+                            <div class="h5">Statistics:</div>
+                            <table cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="level">Level:</td>
+                                    <td><span id="tetris-stats-level">1</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="score">Score:</td>
+                                    <td><span id="tetris-stats-score">0</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="lines">Lines:</td>
+                                    <td><span id="tetris-stats-lines">0</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="apm">APM:</td>
+                                    <td><span id="tetris-stats-apm">0</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="time">Time:</td>
+                                    <td><span id="tetris-stats-time">0</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tetris-area">
+                        <div class="grid1"></div>
+                        <div class="grid2"></div>
+                        <div class="grid3"></div>
+                        <div class="grid4"></div>
+                        <div class="grid5"></div>
+                        <div class="grid6"></div>
+                    </div>
+                    <div id="tetris-help" class="window">
+                        <div class="top">
+                            About <span id="tetris-help-close" class="close">x</span>
+                        </div>
+                        <div class="content" style="margin-top: 1em;">
+                            <div style="margin-top: 1em;">
+                                <div>NWC Tetris is a 1v1 skill-based crypto game. Can you beat your opponent?</div>
+                                <br>
+                                <div>Site: <a href="https://newscrypto.io"></a></div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tetris-highscores" class="window">
+                        <div class="top">
+                            Highscores <span id="tetris-highscores-close" class="close">x</span>
+                        </div>
+                        <div class="content">
+                            <div id="tetris-highscores-content"></div>
+                            <br>
+                            Note: these scores are kept in cookies, they are only visible to your computer.
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="flex justify-center space-x-4">
+                <button class="inline-flex items-center justify-center rounded-md text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:ring focus:ring-green-400 h-10 px-4 py-2">Play Now</button>
+                <button class="inline-flex items-center justify-center rounded-md text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:ring focus:ring-green-400 h-10 px-4 py-2">Tutorial</button>
+            </div>
+        </section>
+        <section class="mt-12 space-y-8">
+            <section class="game-areas grid grid-cols-2 gap-4">
+                <div id="player-game" class="rounded-lg border bg-gray-800 text-white shadow-sm">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Player 1</h3>
+                        <p class="text-green-500">3.2 ETH</p>
+                    </div>
+                </div>
+                <div id="opponent-game" class="rounded-lg border bg-gray-800 text-white shadow-sm">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Player 2</h3>
+                        <p class="text-green-500">1.8 ETH</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="flex items-center justify-center py-4 text-gray-500">
+        <p>© NWC Games. All rights reserved.</p>
+    </footer>
+    <script>
+        function renderGameState(gameState) {
+var gridHtml = "";
+for (var y = 0; y < gameState.grid.length; y++) {
+    for (var x = 0; x < gameState.grid[y].length; x++) {
+        var className = gameState.grid[y][x] ? "blockFilled" : "blockEmpty";
+        gridHtml += '<div class="' + className + '"></div>';
+    }
+    gridHtml += '<br>'; // New line after each row
+}
+document.getElementById('opponent-game').innerHTML = gridHtml;
+}
+    const socket = io('http://localhost:3000');
+    const gameState = getGameState();
+    socket.emit('gameStateUpdate', gameState);
+    setInterval(() => {
+    const gameState = getGameState();
+    socket.emit('gameStateUpdate', gameState);
+}, 100); // Adjust interval as needed
+
+// Function to display opponent's game state
+function displayOpponentGameState(gameState) {
+// Logic to render the opponent's game state
+// For example, updating the innerHTML of 'opponent-game' div
+document.getElementById('opponent-game').innerHTML = renderGameState(gameState);
+}
+
+    socket.on('waitingForOpponent', () => {
+        console.log('Waiting for an opponent...');
+    });
+    // Client-side: Listen for opponent's game state
+socket.on('opponentGameState', (gameState) => {
+    displayOpponentGameState(gameState);
+});
+
+function displayOpponentGameState(gameState) {
+    // Update the UI based on the opponent's game state
+}
+function getGameState() {}
+
+
+    socket.on('gameStart', (data) => {
+        console.log('Game started with opponent:', data.opponentId);
+        // Initialize the Tetris game here
+    });
+
+    socket.on('youWin', () => {
+    alert("You win!");
+    // Handle winning logic
+});
+
+socket.on('youLose', () => {
+    alert("You lose!");
+    // Handle losing logic
+});
+
+
+    socket.on('opponentWon', (data) => {
+        function onGameOver() {
+    socket.emit('gameOver');
+}
+        // Additional UI or game state updates can go here
+    });
+
+    function onGameOver() {
+    socket.emit('gameOver');
+}
+
+    // Additional logic to synchronize game state with the opponent
+</script>
+<script	type="text/javascript">
+    var tetris = new Tetris();
+    tetris.unit = 21;
+    tetris.areaX = 12;
+    tetris.areaY = 22;
+    </script>
+</body>
+</html>

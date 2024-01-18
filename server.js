@@ -3,6 +3,9 @@ const http = require('http');
 const socketIO = require('socket.io');
 const playerMapping = {};
 const app = express();
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 const server = http.createServer(app);
 const io = socketIO(server, {
     cors: {
@@ -19,11 +22,100 @@ app.get('/homepage.html', (req, res) => {
     res.sendFile(__dirname + '/homepage.html'); // Replace 'homepage.html' with the actual file path if needed
 });
 
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 let waitingPlayer = null;
 
+app.post('/signup', (req, res) => {
+    const { email, password } = req.body;
+    console.log('Email:', email);
+    console.log('Password:', password);
+    res.redirect('/homepage.html');
+});
+app.use(bodyParser.json());
+
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'newusername', // Replace with your MySQL username
+    password: 'testtest', // Replace with your MySQL password
+    database: 'nwc' // Replace with your MySQL database name
+  });
+
+  db.connect(err => {
+    if (err) throw err;
+    console.log('Connected to MySQL');
+  });
+
+  app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
+        if (err) {
+            return res.status(500).send('Server error');
+        }
+        if (results.length === 0) {
+            return res.status(400).send('User not found');
+        }
+
+        const validPassword = await bcrypt.compare(password, results[0].password);
+        if (!validPassword) {
+            return res.status(400).send('Invalid Password');
+        }
+
+        res.json({ message: 'Login successful' });
+    });
+});
+
+app.post('/signup', async (req, res) => {
+    const { email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
+
+    db.query('SELECT email FROM users WHERE email = ?', [email], (err, result) => {
+        if (err) {
+            return res.status(500).send('Server error');
+        }
+        if (result.length > 0) {
+            return res.status(400).send('User already exists');
+        } else {
+            db.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword], (err, result) => {
+                if (err) {
+                    return res.status(500).send('Server error');
+                }
+                res.send('User registered successfully');
+            });
+        }
+    });
+});
+
+db.query('SELECT * FROM users WHERE email = ?', [email], function(err, results) {
+    if (err) {
+        // handle error
+    } else if (results.length > 0) {
+        // User exists, send an appropriate response
+    } else {
+        // User does not exist, proceed with registration
+    }
+});
+
+  
+
 io.on('connection', (socket) => {
     console.log('A player connected:', socket.id);
+
+    socket.on('gameStateUpdate', (gameState) => {
+        // Relay the game state to the other player
+        socket.broadcast.emit('opponentGameState', gameState);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
 
     if (waitingPlayer) {
         // Pair up players
@@ -51,7 +143,25 @@ io.on('connection', (socket) => {
         console.log('Player lost:', data.loserId);
         // Notify the other player
         socket.broadcast.emit('opponentWon', { winnerId: socket.id });
+        const opponentId = playerMapping[data.loserId];
+    if (opponentId) {
+        // Emit to the losing player
+        io.to(data.loserId).emit('youLose');
+        // Emit to the winning player
+        io.to(opponentId).emit('youWin');
+    }
     });
+    socket.on('gameOver', (data) => {
+        // Assuming data contains the loser's ID
+        const loserId = data.loserId;
+        const winnerId = playerMapping[loserId]; // Assuming you have a way to identify the winner
+    
+        if (winnerId) {
+            io.to(loserId).emit('youLose');
+            io.to(winnerId).emit('youWin');
+        }
+    });
+    
 
     socket.on('opponentWon', (data) => {
         alert("You win!");

@@ -14,28 +14,30 @@ body, table, input {
     height: 20px;
     display: inline-block;
     background-color: #000; /* or any color representing a filled block */
+	border-radius: 3px;
 }
 .blockEmpty {
     width: 20px;
     height: 20px;
     display: inline-block;
     background-color: #fff; /* representing an empty block */
+	border-radius: 3px;
 }
 
 #tetris	{
 	position: relative;
-	width: 300px;
+	width: 430px;
 	height:	309px;
-	background:	#fff;
-	border:	#2ce214	1px	solid;
+	border-radius: 10px;
 }
 
 #tetris	.left {
-	background:	#5f5e5d;
+	background:	#acc25b;
 	position: absolute;
-	width: 131px;
-	height:	100%;
+	width: 200px;
+	height:	460px;
 	left: 0px;
+	right: 0px
 	top: 0px;
 }
 .left-border { background: #E4BE95;	position: absolute;	z-index: 100; top: 0px;	left: 130px; width:	1px; height: 100%; }
@@ -44,10 +46,10 @@ body, table, input {
 	/* 168,308 +2px	borders	*/
 	background:	#000000;
 	position: absolute;
-	width: 167px;
-	height:	307px;
-	left: 132px;
-	top: 1px;
+	width: 256px;
+	height:	463px;
+	left: 200px;
+	top: 0px;
 	overflow: hidden;
 }
 
@@ -71,8 +73,8 @@ body, table, input {
 	line-height: 1em;
 	font-family: arial;
 	position: absolute;
-	width: 13px;
-	height:	13px;
+	width: 20px;
+	height:	20px;
 	border:	0.5px solid #ffffff;
 	/* with	margin 0.5px there were	problems with offsetLeft and offsetTop */
 }
@@ -105,11 +107,11 @@ body, table, input {
 	display: block;
 	text-decoration: none;
 	color: #ffffff;
-	background:	#5f5e5d;
+	background:	#acc25b;
 	border-width: 1px;
 	margin-bottom: -1px;
 	border-style: solid;
-	border-color: #2ce214;
+	border-color: #293427;
 	cursor:	pointer;
 	text-align:	left;
 	padding-left: 10px;
@@ -118,6 +120,7 @@ body, table, input {
 	width: 78px;
 	padding-bottom: 1px;
 	margin-left: 20px;
+	border-radius: 5px;
 }
 #tetris .menu a:hover { background: #6a6866; }
 
@@ -156,6 +159,7 @@ body, table, input {
 	position: absolute;
 	left: 25px;
 	bottom:	5px;
+	border-radius: 5px;
 }
 #tetris	.stats td {	padding-bottom:	1px; line-height: 1.25em; }
 
@@ -230,21 +234,23 @@ body, table, input {
 	top: 1px;
 	z-index: 50000;
 	display: none;
+	border-radius: 10px;
 }
 #tetris	.window	.top {
 	position: relative;
 	background:	#5f5e5d;
-	color: #666666;
+	color: #66666692;
 	letter-spacing:	+1px;
 	height:	20px;
 	line-height: 20px;
 	vertical-align:	middle;
 	border-bottom: 1px solid #ffffff;
 	text-indent: 10px;
+	border-radius: 10px 10px 0 0;
 }
 #tetris	.window	.top .close	{
 	position: absolute;
-	background:	#5f5e5d;
+	background:	#5e5f5d;
 	font-family: verdana;
 	font-weight: bold;
 	right: 0px;
@@ -255,6 +261,7 @@ body, table, input {
 	width: 21px;
 	border-left: 1px solid #ffffff;
 	cursor:	pointer;
+	border-radius: 0 10px 0 0;
 }
 #tetris	.window	.top .close:hover {
 	background:	#EFE8DE;

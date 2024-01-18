@@ -1,0 +1,27 @@
+<form id="loginForm">
+    <input type="email" id="email" name="email" placeholder="Email" required class="form-input">
+    <input type="password" id="password" name="password" placeholder="Password" required class="form-input">
+    <button type="submit" class="play-button">Login</button>
+</form>
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle response, e.g., redirect to dashboard
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+</script>

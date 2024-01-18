@@ -122,7 +122,7 @@
 function Tetris()
 {
 	var self = this;
-
+    var socket = io.connect('http://localhost:3000'); // Assuming your server is running on localhost port 3000
 	this.stats = new Stats();
 	this.puzzle = null;
 	this.area = null;
@@ -1506,6 +1506,11 @@ function Tetris()
 			document.cookie = name + "=; expires=Thu, 01-Jan-70 00:00:01 GMT";
 		};
 	}
+	socket.on('opponentGameState', function(opponentState) {
+		// Handle the opponent's game state
+		// You will need to implement how you want to display this
+		console.log(opponentState);
+	});
 }
 
 if (!String.prototype.trim) {

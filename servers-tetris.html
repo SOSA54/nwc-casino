@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/casino images/nwc.ico" rel="shortcut icon">
+    <!-- TailwindCSS for quick styling -->
+</head>
+<style>
+.server-category {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.category-name {
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.server-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.server-tile {
+    width: 25%; /* Set the width of each server tile */
+    text-decoration: none; /* Remove underlines from the anchor tags */
+    transition: transform 0.3s; /* Add transition for the transform property */
+}
+
+.server-tile:hover {
+    transform: scale(1.05); /* Scale up the tile on hover */
+}
+
+.wallet-container {
+    display: flex;
+    align-items: center;
+    background-color: #333; /* Adjust the color to match your theme */
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-family: 'Arial', sans-serif; /* Use your preferred font here */
+    font-size: 14px; /* Adjust the size as needed */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+}
+
+.wallet-icon {
+    width: 20px; /* Adjust the size as needed */
+    height: 20px; /* Adjust the size as needed */
+    margin-right: 5px;
+    background-image: url("/casino images/nwc.ico"); /* Path to your .ico file */
+    background-size: cover;
+    border-radius: 50%; /* Makes the icon round */
+}
+
+.wallet-balance {
+    font-weight: bold; /* Makes the balance text bold */
+}
+
+</style>
+<body class="bg-gray-900 text-white font-sans">
+    <header class="flex items-center justify-between px-6 py-4 bg-gray-800">
+        <h1 class="text-2xl font-bold text-green-500">NWC Games</h1>
+        <div class="wallet-container">
+            <div class="wallet-icon"></div>
+            <span id="walletBalance" class="wallet-balance">100 DNWC</span>
+        </div>
+        <nav class="flex gap-4">
+            <a class="text-lg hover:text-green-500" href="/homepage.html">Home</a>
+            <a class="text-lg hover:text-green-500" href="/games.html">Games</a>
+            <a class="text-lg hover:text-green-500" href="/homepage.html">Log in</a>
+        </nav>
+    </header>
+
+    <main class="p-4">
+        <div class="server-category">
+            <div class="category-name">
+                <h2 class="text-white text-2xl mb-4">Game Servers</h2>
+            </div>
+            <div class="server-tiles">
+                <!-- Server 1 -->
+                <a href="/tetris-game.html" class="server-tile">
+                    <div class="bg-gray-700 rounded overflow-hidden">
+                        <!-- Add server image -->
+                        <div class="p-4">
+                            <h3 class="text-green-400 text-xl font-semibold">10 DNWC</h3>
+                            <p class="text-gray-400">Join Now</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Server 2 -->
+                <a href="/tetris-game.html" class="server-tile">
+                    <div class="bg-gray-700 rounded overflow-hidden">
+                        <!-- Add server image -->
+                        <div class="p-4">
+                            <h3 class="text-green-400 text-xl font-semibold">25 DNWC</h3>
+                            <p class="text-gray-400">Join Now</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Server 3 -->
+                <a href="/tetris-game.html" class="server-tile">
+                    <div class="bg-gray-700 rounded overflow-hidden">
+                        <!-- Add server image -->
+                        <div class="p-4">
+                            <h3 class="text-green-400 text-xl font-semibold">100 DNWC</h3>
+                            <p class="text-gray-400">Join Now</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Server 4 -->
+                <a href="/tetris-game.html" class="server-tile">
+                    <div class="bg-gray-700 rounded overflow-hidden">
+                        <!-- Add server image -->
+                        <div class="p-4">
+                            <h3 class="text-green-400 text-xl font-semibold">250 DNWC</h3>
+                            <p class="text-gray-400">Join Now</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Server 5 -->
+                <a href="/tetris-game.html" class="server-tile">
+                    <div class="bg-gray-700 rounded overflow-hidden">
+                        <!-- Add server image -->
+                        <div class="p-4">
+                            <h3 class="text-green-400 text-xl font-semibold">1000 DNWC</h3>
+                            <p class="text-gray-400">Join Now</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-600 p-4 text-center">
+        <!-- Footer content here -->
+        <p>© 2024 Gaming Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Placeholder for any required JavaScript
+    </script>
+</body>
+</html>
