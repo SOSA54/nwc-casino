@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const server = http.createServer(app);
 const io = socketIO(server, {
     cors: {
-        origin: "http://127.0.0.1:5502",  // Change this to your client's origin
+        origin: "*",  // Change this to your client's origin
         methods: ["GET", "POST"]
     }
 });
@@ -114,15 +114,10 @@ app.post('/signup', async (req, res) => {
 io.on('connection', (socket) => {
     console.log('A player connected:', socket.id);
 
-    socket.on('gameStateUpdate', (gameState) => {
-        // Relay the game state to the other player
-        socket.broadcast.emit('opponentGameState', gameState);
-    });
-
-    socket.on('disconnect', () => {
-        console.log('User disconnected');
-    });
-
+    if (playerMapping[socket.id]) {
+        console.log('Player already connected:', socket.id);
+        return; // Skip if this player is already connected
+    }
     if (waitingPlayer) {
         // Pair up players
         playerMapping[socket.id] = waitingPlayer.id;
@@ -143,6 +138,9 @@ io.on('connection', (socket) => {
         const opponentId = playerMapping[socket.id];
     delete playerMapping[socket.id];
     delete playerMapping[opponentId];
+    if (opponentId) {
+        io.to(opponentId).emit('opponentDisconnected');
+    }
     });
 
     socket.on('gameOver', (data) => {
@@ -174,14 +172,8 @@ io.on('connection', (socket) => {
         // Yo seru can also update the UI or game state as necessary
     });
     // Server-side: Relay game state to the other player
-    socket.on('gameStateUpdate', (gameState) => {
-        let opponentId = playerMapping[socket.id];
-        if (opponentId) {
-            socket.to(opponentId).emit('opponentGameState', gameState);
-        }
-    });
     
     // Additional game state synchronization events can be added here
 });
 
-server.listen(3000, () => console.log('Server listening on port 3000'));
+server.listen(3000, '0.0.0.0', () => console.log('Server listening on port 3000'));

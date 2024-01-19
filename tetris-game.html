@@ -8,7 +8,6 @@
     <link href="/jstetris-master/jstetris-master/src/tetris.css"	rel="stylesheet" type="text/css">
     <link href="/casino images/nwc.ico" rel="shortcut icon">
     <script	type="text/javascript" src="/jstetris-master/jstetris-master/src/tetris.js"></script>
-    <script src="/node_modules/socket.io/client-dist/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
 <style>
 
@@ -198,73 +197,44 @@
         <p>© NWC Games. All rights reserved.</p>
     </footer>
     <script>
-        function renderGameState(gameState) {
-var gridHtml = "";
-for (var y = 0; y < gameState.grid.length; y++) {
-    for (var x = 0; x < gameState.grid[y].length; x++) {
-        var className = gameState.grid[y][x] ? "blockFilled" : "blockEmpty";
-        gridHtml += '<div class="' + className + '"></div>';
-    }
-    gridHtml += '<br>'; // New line after each row
-}
-document.getElementById('opponent-game').innerHTML = gridHtml;
-}
+
     const socket = io('http://localhost:3000');
-    const gameState = getGameState();
-    socket.emit('gameStateUpdate', gameState);
     setInterval(() => {
     const gameState = getGameState();
     socket.emit('gameStateUpdate', gameState);
-}, 100); // Adjust interval as needed
+}, 100); 
 
-// Function to display opponent's game state
-function displayOpponentGameState(gameState) {
-// Logic to render the opponent's game state
-// For example, updating the innerHTML of 'opponent-game' div
-document.getElementById('opponent-game').innerHTML = renderGameState(gameState);
-}
+let socket;
+    let intervalId;
 
-    socket.on('waitingForOpponent', () => {
-        console.log('Waiting for an opponent...');
-    });
-    // Client-side: Listen for opponent's game state
-socket.on('opponentGameState', (gameState) => {
-    displayOpponentGameState(gameState);
-});
+    document.getElementById('tetris-menu-start').addEventListener('click', function() {
+        if (!socket) {
+            socket = io('http://localhost:3000');
 
-function displayOpponentGameState(gameState) {
-    // Update the UI based on the opponent's game state
-}
-function getGameState() {}
+            socket.on('waitingForOpponent', () => {
+                console.log('Waiting for an opponent...');
+            });
 
-    socket.on('gameStart', (data) => {
-        console.log('Game started with opponent:', data.opponentId);
-        // Initialize the Tetris game here
-    });
+            socket.on('gameStart', (data) => {
+                console.log('Game started with opponent:', data.opponentId);
+                intervalId = setInterval(() => {
+                    const gameState = getGameState(); // Define this function based on your game logic
+                    socket.emit('gameStateUpdate', gameState);
+                }, 1000); // Adjust interval as needed
+            });
 
-    socket.on('youWin', () => {
-    alert("You win!");
-    // Handle winning logic
-});
-
-socket.on('youLose', () => {
-    alert("You lose!");
-    // Handle losing logic
-});
-
-
-    socket.on('opponentWon', (data) => {
-        function onGameOver() {
-    socket.emit('gameOver');
-}
-        // Additional UI or game state updates can go here
+            // Additional event listeners...
+        }
     });
 
     function onGameOver() {
-    socket.emit('gameOver');
-}
+        if (socket) {
+            socket.emit('gameOver');
+            clearInterval(intervalId);
+        }
+    }
 
-    // Additional logic to synchronize game state with the opponent
+
 </script>
 <script	type="text/javascript">
     var tetris = new Tetris();
