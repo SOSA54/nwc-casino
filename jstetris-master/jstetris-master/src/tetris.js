@@ -119,17 +119,18 @@
  * document.getElementById("tetris-nextpuzzle") cache ?
  *
  */
-function Tetris()
+function Tetris(socket)
 {
 	var self = this;
-    var socket = io.connect('http://localhost:3000'); // Assuming your server is running on localhost port 3000
+    //var socket = io.connect('http://localhost:3000'); // Assuming your server is running on localhost port 3000
 	this.stats = new Stats();
 	this.puzzle = null;
 	this.area = null;
-
+    this.socket = socket;
 	this.unit  = 20; // unit = x pixels
 	this.areaX = 20; // area width = x units
 	this.areaY = 20; // area height = y units
+	var socket = io.connect('http://localhost:3000');
 
 	this.highscores = new Highscores(10);
 	this.paused = false;
@@ -237,8 +238,6 @@ function Tetris()
 				self.stats.setActions(self.stats.getActions() + 1);
 			}
 		}
-		var gameState = getGameState();
-    socket.emit('gameStateUpdate', gameState);
 	};
 
 	/**
@@ -254,8 +253,6 @@ function Tetris()
 				self.stats.setActions(self.stats.getActions() + 1);
 			}
 		}
-		var gameState = getGameState();
-		socket.emit('gameStateUpdate', gameState);
 	};
 
 	/**
@@ -270,8 +267,6 @@ function Tetris()
 				self.stats.setActions(self.stats.getActions() + 1);
 			}
 		}
-		var gameState = getGameState();
-    socket.emit('gameStateUpdate', gameState);
 	};
 
 	/**
@@ -286,8 +281,6 @@ function Tetris()
 				self.stats.setActions(self.stats.getActions() + 1);
 			}
 		}
-		var gameState = getGameState();
-    socket.emit('gameStateUpdate', gameState);
 	};
 
 	/**
@@ -300,8 +293,6 @@ function Tetris()
 			self.puzzle.stop();
 			self.puzzle.forceMoveDown();
 		}
-		var gameState = getGameState();
-		socket.emit('gameStateUpdate', gameState);
 	};
 
 	// windows
@@ -436,16 +427,6 @@ function Tetris()
 				}
 			}
 		};
-	}
-	function getGameState() {
-		var stats = tetris.stats;
-		var gameState = {
-			level: stats.getLevel(),
-			score: stats.getScore(),
-			lines: stats.getLines(),
-			grid: captureGridState()
-		};
-		return gameState;
 	}
 	
 	function captureGridState() {
@@ -1186,8 +1167,7 @@ function Tetris()
 				}
 			}
 			this.board = puzzle;
-			var gameState = getGameState();
-    socket.emit('gameStateUpdate', gameState);
+
 		};
 
 		/**

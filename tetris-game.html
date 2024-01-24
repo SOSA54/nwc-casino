@@ -46,6 +46,60 @@
     font-weight: bold; /* Makes the balance text bold */
 }
 
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content h2 {
+    color: #48bb78; /* Green */
+}
+
+.popup-content button {
+    background-color: #48bb78; /* Green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
 /* Add this CSS after your TailwindCSS import */
 
 </style>
@@ -53,8 +107,10 @@
     <!-- TailwindCSS for quick styling -->
 </head>
 <body class="dark min-h-screen flex flex-col bg-gray-900 text-white font-sans">
+    
     <header class="flex items-center justify-between px-6 py-4 bg-gray-800">
         <h1 class="text-2xl font-bold text-green-500">NWC Games</h1>
+        </div>
         <div class="wallet-container">
             <div class="wallet-icon"></div>
             <span id="walletBalance" class="wallet-balance">100 DNWC</span>
@@ -65,27 +121,15 @@
             <a class="text-lg hover:text-green-500" href="/homepage.html">Log in</a>
         </nav>
     </header>
-    
-
     <main class="flex-1 grid place-items-center p-6">
         <h2 class="text-3xl font-bold text-center pb-4">1v1 Tetris</h2>
+        
             <div class="relative w-[300px] h-[600px] bg-gray-800 rounded-lg">
             </div>
         <section class="space-y-8">
                 <div id="tetris">
                     <div class="left">
                         <h1><a href="https://newscrypto.io">NWC TETRIS</a></h1>
-                        <div class="menu">
-                            <div><a href="javascript:void(0)" id="tetris-menu-start">New Game</a></div>
-                            <div id="tetris-pause">
-                                <a href="javascript:void(0)" id="tetris-menu-pause">Pause</a>
-                            </div>
-                            <div style="display: none;" id="tetris-resume">
-                                <a href="javascript:void(0)" id="tetris-menu-resume">Resume</a>
-                            </div>
-                            <div><a href="javascript:void(0)" id="tetris-menu-highscores">Highscores</a></div>
-                            <div><a href="javascript:void(0)" id="tetris-menu-help">About</a></div>
-                        </div>
                         <div id="tetris-nextpuzzle"></div>
                         <div id="tetris-gameover">Game Over</div>
                         <div id="tetris-keys">
@@ -192,39 +236,88 @@
             </section>
         </section>
     </main>
+    <div id="winLoseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalText">Some text in the Modal..</p>
+        </div>
+    </div>
 
     <footer class="flex items-center justify-center py-4 text-gray-500">
         <p>© NWC Games. All rights reserved.</p>
     </footer>
     <script>
-
-    const socket = io('http://localhost:3000');
-    setInterval(() => {
-    const gameState = getGameState();
-    socket.emit('gameStateUpdate', gameState);
-}, 100); 
-
-let socket;
+            var socket = io.connect('http://localhost:3000');
+    var tetris = new Tetris(socket);
+const socket = io();
     let intervalId;
+// Example Login Function
+async function login(username, password) {
+    const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    });
+    if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('userId', data.userId); // Store user ID
+        connectToGameServer(data.userId); // Connect to game server with user ID
+    } else {
+        console.error('Login failed');
+    }
+}
 
+// Modify to connect with user ID
+function connectToGameServer(userId) {
+    const socket = io({ query: { userId } });
+
+    // Existing socket event listeners go here...
+
+    socket.on('paired', (opponentId) => {
+            console.log('Paired with opponent:', opponentId);
+            var tetris = new Tetris();
+            tetris.start(); // Automatically start the game
+        });
+
+    // Add more event listeners as needed...
+}
+
+    socket.on('waitingForOpponent', () => {
+    document.getElementById('opponentSearch').style.display = 'block';
+});
+
+socket.on('paired', (opponentId) => {
+    console.log('Paired with opponent:', opponentId);
+});
+
+socket.on('countdown', (countdown) => {
+    document.getElementById('countdown').innerText = 'Game starts in: ' + countdown;
+});
+
+socket.on('startGame', () => {
+    document.getElementById('opponentSearch').style.display = 'none';
+    // Start the game
+    // You can trigger the game start logic here
+});
+
+    socket.on('gameStart', (data) => {
+        console.log('Game started with opponent:', data.opponentId);
+        intervalId = setInterval(() => {
+            socket.emit('gameStateUpdate', gameState);
+        }, 1000); // Adjust interval as needed
+    });
     document.getElementById('tetris-menu-start').addEventListener('click', function() {
-        if (!socket) {
-            socket = io('http://localhost:3000');
+    // Additional event listeners...
+});
 
-            socket.on('waitingForOpponent', () => {
-                console.log('Waiting for an opponent...');
-            });
+socket.on('youWin', () => {
+        showModal("Congratulations! You win!");
+    });
 
-            socket.on('gameStart', (data) => {
-                console.log('Game started with opponent:', data.opponentId);
-                intervalId = setInterval(() => {
-                    const gameState = getGameState(); // Define this function based on your game logic
-                    socket.emit('gameStateUpdate', gameState);
-                }, 1000); // Adjust interval as needed
-            });
-
-            // Additional event listeners...
-        }
+socket.on('youLose', () => {
+        showModal("Sorry, you lose!");
     });
 
     function onGameOver() {
@@ -233,6 +326,55 @@ let socket;
             clearInterval(intervalId);
         }
     }
+
+    function showModal(message) {
+    var modal = document.getElementById("winLoseModal");
+    var span = document.getElementsByClassName("close")[0];
+    var modalText = document.getElementById("modalText");
+    modalText.innerHTML = message;
+    modal.style.display = "block";
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+
+function showPopup(title, message) {
+    let popup = document.createElement("div");
+    popup.innerHTML = `
+        <div class="popup-overlay">
+            <div class="popup-content">
+                <h2>${title}</h2>
+                <p>${message}</p>
+                <button onclick="closePopup(this)">Close</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(popup);
+}
+
+function closePopup(button) {
+    let popup = button.closest('.popup-overlay');
+    document.body.removeChild(popup);
+}
+
+socket.on('gameResult', (data) => {
+    if (data.result === 'win') {
+        showModal("Congratulations! You win!");
+    } else {
+        showModal("Sorry, you lose!");
+    }
+});
+
+socket.on('redirect', (url) => {
+    setTimeout(() => {
+        window.location.href = url;
+    }, 5000); // Redirect after 5 seconds
+});
 
 
 </script>

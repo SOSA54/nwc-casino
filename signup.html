@@ -211,25 +211,46 @@
 
     <!-- Email Sign-up/Login Form -->
     <div class="form-container">
-        <form id="signupForm" method="post" action="/signup.html">
+        <form id="signupForm" method="post" action="/signup">
             <input type="text" id="username" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required class="form-input">
-            <input type="password" name="password" placeholder="Password" required class="form-input">
+            <input type="email" id="email" name="email" placeholder="Email" required class="form-input">
+            <input type="password" id="password" name="password" placeholder="Password" required class="form-input">
             <button type="submit" class="play-button">Sign up / Login</button>
         </form>
         
     </div>
-
-        <!-- Google Sign-in Button -->
-        <div class="play-button-container">
-            <a href="/auth/google" class="play-button">Sign in with Google</a>
-        </div>
-    <!-- Play Tetris Button 
-    <div class="play-button-container">
-        <a href="index.html" class="play-button">Play Tetris for $1</a>
-    </div> -->
-
-    <!-- Existing Footer -->
 </body>
+<!-- Add this script in your HTML file -->
+<script>
+document.getElementById('signupForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
 
+    const formData = {
+        username: document.getElementById('username').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+    };
+
+    try {
+        const response = await fetch('http://localhost:3000/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+            // Handle success
+            window.location.href = '/login.html'; // Redirect to login page
+        } else {
+            // Handle error
+            alert('Signup failed. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    }
+});
+
+
+</script>
 </html>
